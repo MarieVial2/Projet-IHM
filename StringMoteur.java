@@ -1,42 +1,58 @@
-
+import javax.swing.*;
+import java.awt.*;
 
 /**
  *
  * @author p2510730
  */
 public class StringMoteur {
-    public String majuscules(String s) {
-        return s.toUpperCase();
+
+    StringMoteurInterface smi;
+
+    public StringMoteur(StringMoteurInterface smi) {
+        this.smi = smi;
     }
 
-    public String minuscules(String s) {
-        return s.toLowerCase();
+    public void majuscules() {
+        this.smi.setTextLabel(this.smi.getText().toUpperCase());
+        //return s.toUpperCase();
     }
 
-    public String ajoutDebut(String s1, String s2) {
-        StringBuffer concaten = new StringBuffer(s2);
-        return concaten.append(s1).toString();
+    public void minuscules() {
+        this.smi.setTextLabel(this.smi.getText().toLowerCase());
     }
 
-    public String ajoutFin(String s1, String s2) {
-        StringBuffer concaten = new StringBuffer(s1);
-        return concaten.append(s2).toString();
+    public void ajoutDebut() {
+        //StringBuffer concaten = new StringBuffer(s2);
+        //return concaten.append(s1).toString();
+        //return s1+s2;
+        String s1 = this.smi.getTextLabel();
+        String s2 = this.smi.getText();
+        this.smi.setTextLabel(s2+s1);
+
     }
 
-    public String afficheMots(String s) {
+    public void ajoutFin() {
+        String s1 = this.smi.getTextLabel();
+        String s2 = this.smi.getText();
+        this.smi.setTextLabel(s1+s2);
+    }
+
+    public void afficheMots() {
         String[] tab;
+        String s = this.smi.getText();
         tab = s.split(" ");
         StringBuffer concaten = new StringBuffer();
 
-        if (tab.length >= 0)
-            concaten.append(tab[0]);
+
+        concaten.append(tab[0]);
 
         for (int i = 1; i < tab.length; i++) {
             concaten.append(", ");
             concaten.append(tab[i]);
         }
 
-        return concaten.toString();
+        this.smi.setTextLabel(concaten.toString());
 
     }
 
@@ -63,44 +79,52 @@ public class StringMoteur {
         return concaten.toString();
     }
 
-    public String tailleSansEspaces(String s) {
-        s = s.replace(" ", "");
+    public void tailleSansEspaces() {
+        String s = this.smi.getText().replace(" ", "");
         int nb = s.length();
-        return String.valueOf(nb);
+        this.smi.setTextLabel(String.valueOf(nb));
+
     }
 
-    public String calculSimple(String s) {
+    public void calculSimple() {
         String[] tab;
-        tab = s.split(" ");
+        tab = this.smi.getText().split(" ");
         if (tab.length != 3) {
             throw new ArrayIndexOutOfBoundsException();
         }
         int nb1 = Integer.parseInt(tab[0]);
         int nb2 = Integer.parseInt(tab[2]);
-
+        String chaine="";
 
         switch (tab[1]) {
 
             case "+":
-                return String.valueOf(nb1 + nb2);
+                chaine = String.valueOf(nb1 + nb2);
+                this.smi.setTextLabel(chaine);
 
             case "-":
-                return String.valueOf(nb1 - nb2);
+                chaine = String.valueOf(nb1 - nb2);
+                this.smi.setTextLabel(chaine);
 
             case "/":
                 if (nb2 == 0)
                     throw new ArithmeticException("Impossible de diviser par 0 !");
                 else
-                    return String.valueOf(nb1 / nb2);
+                    chaine = String.valueOf(nb1 / nb2);
+                this.smi.setTextLabel(chaine);
 
             case "*":
-                return String.valueOf(nb1 * nb2);
+                chaine = String.valueOf(nb1 * nb2);
+                this.smi.setTextLabel(chaine);
 
             default:
                 throw new IllegalArgumentException("Mauvais opérateur");
 
         }
+
+
     }
+
     //considérer quand ce n'est pas des nombres : numberformatexception. On peut aussi avoir arithmeticexception division par 0. Si on a d'autre opérateur, illegalArgumentsException
 
     public String initialesEnMajuscules (String s) {
