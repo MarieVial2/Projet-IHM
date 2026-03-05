@@ -72,7 +72,7 @@ public class StringMoteurInterface extends JFrame implements ActionListener{
                 }
         );
 
-        buttonCalc.
+        buttonCalc.addActionListener(this);
 
         //.dispose() pour sortir
     }

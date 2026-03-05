@@ -44,6 +44,14 @@ public class StringFenetrePrincipale extends JFrame {
         JButton button2 = new JButton("Play with English words");
         button2.setAlignmentX(Component.CENTER_ALIGNMENT);
         pan.add(button2);
+        button2.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed (ActionEvent e) {
+                        PlayWordInterface englishWords = new PlayWordInterface();
+                        englishWords.setVisible(true);
+                    }
+                }
+        );
         pan.add(Box.createVerticalGlue());
 
         return pan;
