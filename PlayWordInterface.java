@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class PlayWordInterface extends JFrame {
@@ -72,8 +74,15 @@ public class PlayWordInterface extends JFrame {
 
         cancel = new JMenuItem(new CancelAction("Cancel last operation", this));
         quit = new JMenuItem("Quit");
-        cancel.setEnabled(false);
 
+        cancel.setEnabled(false);
+        quit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //on mentionne la classe du this que l'on cible :  --- dispose permet de fermer la JFrame
+                PlayWordInterface.this.dispose();
+            }
+        });
         menuCancel.add(cancel);
         menuCancel.add(quit);
 

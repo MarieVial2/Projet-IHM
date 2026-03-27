@@ -7,6 +7,9 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             public void run(){
                 StringFenetrePrincipale fenetre = new StringFenetrePrincipale();
+                String[] tab = {"Pomme", "Banane", "Orange"};
+                ModeleComboPlayword MCP = new ModeleComboPlayword( tab);
+
                 fenetre.setVisible(true);
             }
         });
