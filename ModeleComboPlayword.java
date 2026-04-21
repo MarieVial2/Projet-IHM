@@ -80,8 +80,7 @@ public class ModeleComboPlayword extends AbstractListModel<String> implements Co
 
     }
 
-    public void elimineCopies(){
 
-    }
+
 
 }

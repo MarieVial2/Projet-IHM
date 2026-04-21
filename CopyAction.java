@@ -13,7 +13,13 @@ public class CopyAction extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String item = pw.getComboChoix().getSelectedItem().toString();
+
+        ModeleComboPlayword CBChoix = this.pw.getModel(pw.getComboChoix());
+        String s1 = (String) CBChoix.getSelectedItem();
+        this.pw.getModel(this.CB).ajoutDebutEtSelectionne(s1);
+        CBChoix.supprimeSelectionne();
+
+        /*String item = pw.getComboChoix().getSelectedItem().toString();
         CB.addItem(item);
         pw.getComboChoix().removeItem(item);
         if (CB.getItemCount() != pw.getNbItem()){
@@ -21,7 +27,7 @@ public class CopyAction extends AbstractAction {
         }
         pw.setItemCB(CB.getItemAt(CB.getItemCount() - 1));
         System.out.println(CB.getItemAt(CB.getItemCount() - 1));
-        pw.setCBCopyAction(CB);
+        pw.setCBCopyAction(CB);*/
 
     }
 }

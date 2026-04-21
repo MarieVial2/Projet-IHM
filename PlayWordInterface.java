@@ -6,14 +6,11 @@ import java.awt.event.ActionListener;
 
 public class PlayWordInterface extends JFrame {
 
-    private JComboBox comboProfession = new JComboBox();
-
-
     private JComboBox comboChoix = new JComboBox(new ModeleComboPlayword(new String[] {"Geocaching", "Alnager", "Scuteliphilly"}));
+    private JComboBox comboProfession = new JComboBox(new ModeleComboPlayword());
+    private JComboBox comboIndoor = new JComboBox(new ModeleComboPlayword());
+    private JComboBox comboOutdoor = new JComboBox(new ModeleComboPlayword());
 
-
-    private JComboBox comboIndoor = new JComboBox();
-    private JComboBox comboOutdoor = new JComboBox();
     private JButton buttonCopyProf ;
     private JButton buttonCopyIn;
     private JButton buttonCopyOut ;
@@ -24,27 +21,8 @@ public class PlayWordInterface extends JFrame {
     private JMenuItem cancel;
     private JMenuItem quit;
 
-    public JComboBox getCBCopyAction() {
-        return CBCopyAction;
-    }
-
-    public void setCBCopyAction(JComboBox CBCopyAction) {
-        this.CBCopyAction = CBCopyAction;
-    }
-
     private JComboBox CBCopyAction;
-
-    public Object getItemCB() {
-        return itemCB;
-    }
-
-    public void setItemCB(Object itemCB) {
-        this.itemCB = itemCB;
-    }
-
     private Object itemCB;
-
-
 
     private final int nbItem = getComboChoix().getItemCount();
 
@@ -71,6 +49,7 @@ public class PlayWordInterface extends JFrame {
         JMenuBar menuBar = new JMenuBar();
         JMenu menuCopy = new JMenu("Copy Operation");
         JMenu menuCancel = new JMenu("Cancel & quit");
+        JMenu manList= new JMenu("Managing the List of Words");
 
         copyProfession = new JMenuItem(new CopyAction("Copy to profession", this, comboProfession));
         copyIndoor = new JMenuItem(new CopyAction("Copy to indoor hobbies", this, comboIndoor));
@@ -98,8 +77,6 @@ public class PlayWordInterface extends JFrame {
         menuCopy.add(copyOut);
 
 
-
-
         return menuBar;
     }
 
@@ -118,10 +95,7 @@ public class PlayWordInterface extends JFrame {
         JLabel indoor = new JLabel("Indoor Hobbies");
         JLabel outdoor = new JLabel("Outdoor Hobbies");
 
-        comboChoix.addItem("Geocaching");
-        comboChoix.addItem("Scuteliphilly");
-        comboChoix.addItem("Mixology");
-        comboChoix.addItem("Topiary");
+
 
         //
         buttonCopyProf = new JButton(new CopyAction("Copy Here", this, comboProfession));
@@ -152,8 +126,26 @@ public class PlayWordInterface extends JFrame {
 
 
 
-
         return pan;
+    }
+
+    public ModeleComboPlayword getModel (JComboBox combo){
+        return (ModeleComboPlayword) combo.getModel();
+    }
+
+    public JComboBox getCBCopyAction() {
+        return CBCopyAction;
+    }
+
+    public void setCBCopyAction(JComboBox CBCopyAction) {
+        this.CBCopyAction = CBCopyAction;
+    }
+    public Object getItemCB() {
+        return itemCB;
+    }
+
+    public void setItemCB(Object itemCB) {
+        this.itemCB = itemCB;
     }
 
     public int getNbItem() {
