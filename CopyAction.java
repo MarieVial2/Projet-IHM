@@ -5,15 +5,10 @@ public class CopyAction extends AbstractAction {
     private PlayWordInterface pw;
     private JComboBox CB;
 
-
-
-
     public CopyAction(String givenName,  PlayWordInterface pw, JComboBox CB) {
         super(givenName);
         this.pw = pw;
         this.CB=CB;
-
-
     }
 
     @Override
@@ -27,9 +22,6 @@ public class CopyAction extends AbstractAction {
         pw.setItemCB(CB.getItemAt(CB.getItemCount() - 1));
         System.out.println(CB.getItemAt(CB.getItemCount() - 1));
         pw.setCBCopyAction(CB);
-
-
-
 
     }
 }

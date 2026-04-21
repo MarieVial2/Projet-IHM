@@ -7,7 +7,11 @@ import java.awt.event.ActionListener;
 public class PlayWordInterface extends JFrame {
 
     private JComboBox comboProfession = new JComboBox();
-    private JComboBox comboChoix = new JComboBox();
+
+
+    private JComboBox comboChoix = new JComboBox(new ModeleComboPlayword(new String[] {"Geocaching", "Alnager", "Scuteliphilly"}));
+
+
     private JComboBox comboIndoor = new JComboBox();
     private JComboBox comboOutdoor = new JComboBox();
     private JButton buttonCopyProf ;
@@ -119,9 +123,12 @@ public class PlayWordInterface extends JFrame {
         comboChoix.addItem("Mixology");
         comboChoix.addItem("Topiary");
 
+        //
         buttonCopyProf = new JButton(new CopyAction("Copy Here", this, comboProfession));
         buttonCopyIn = new JButton(new CopyAction("Copy Here", this, comboIndoor));
         buttonCopyOut = new JButton(new CopyAction("Copy Here", this, comboOutdoor));
+
+
         panMiddle.add(words);
         panMiddle.add(professions);
         panMiddle.add(indoor);
