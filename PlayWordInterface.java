@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 public class PlayWordInterface extends JFrame {
 
+    private JPanel pan;
     private JComboBox comboChoix = new JComboBox(new ModeleComboPlayword(new String[] {"Geocaching", "Alnager", "Scuteliphilly"}));
     private JComboBox comboProfession = new JComboBox(new ModeleComboPlayword());
     private JComboBox comboIndoor = new JComboBox(new ModeleComboPlayword());
@@ -20,6 +21,8 @@ public class PlayWordInterface extends JFrame {
 
     private JMenuItem cancel;
     private JMenuItem quit;
+    private JMenuItem addWord;
+    private JMenuItem deleteWord;
 
     private JComboBox CBCopyAction;
     private Object itemCB;
@@ -57,6 +60,8 @@ public class PlayWordInterface extends JFrame {
 
         cancel = new JMenuItem(new CancelAction("Cancel last operation", this));
         quit = new JMenuItem("Quit");
+        addWord = new JMenuItem(new AddAction("Add a word", this , pan));
+        deleteWord = new JMenuItem(new DeleteAction("Delete a word", this , pan));
 
         cancel.setEnabled(false);
         quit.addActionListener(new ActionListener() {
@@ -68,9 +73,13 @@ public class PlayWordInterface extends JFrame {
         });
         menuCancel.add(cancel);
         menuCancel.add(quit);
+        manList.add(addWord);
+        manList.add(deleteWord);
+
 
         menuBar.add(menuCopy);
         menuBar.add(menuCancel);
+        menuBar.add(manList);
 
         menuCopy.add(copyProfession);
         menuCopy.add(copyIndoor);
@@ -81,7 +90,7 @@ public class PlayWordInterface extends JFrame {
     }
 
     private JPanel constructeurPan() {
-        JPanel pan = new JPanel();
+        pan = new JPanel();
         pan.setLayout(new BoxLayout(pan,BoxLayout.Y_AXIS));
         JLabel labelTop = new JLabel("Put each word of the combo box  into the corresponding category");
         labelTop.setAlignmentX(Component.CENTER_ALIGNMENT);

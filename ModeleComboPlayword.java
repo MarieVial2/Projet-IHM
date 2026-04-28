@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ModeleComboPlayword extends AbstractListModel<String> implements ComboBoxModel<String> {
+
+
     private List<String> tabStrings;
     private String selectedItem;
 
@@ -80,7 +82,27 @@ public class ModeleComboPlayword extends AbstractListModel<String> implements Co
 
     }
 
+    public void supprimer(String word, JPanel panel) {
+
+        if (word!=null && tabStrings.contains(word)) {
+            JOptionPane.showConfirmDialog(panel, "Are you sure ?");
+            int position = tabStrings.indexOf(word);
+            tabStrings.remove(position);
+            fireIntervalRemoved(this, position, position);
+            if(!tabStrings.isEmpty()){
+                //Juste pour selectionner le premier element de la liste
+                selectedItem = tabStrings.get(0);
+            } else {
+                selectedItem = null;
+            }
+        } else {
+            JOptionPane.showMessageDialog(panel, "Unknown word");
+        }
+    }
 
 
+    public List<String> getTabStrings() {
+        return tabStrings;
+    }
 
 }
